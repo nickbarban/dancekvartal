@@ -46,9 +46,6 @@ public class Student implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @OneToOne    @JoinColumn(unique = true)
-    private User user;
-
     @OneToMany(mappedBy = "student")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Payment> payments = new HashSet<>();
@@ -124,19 +121,6 @@ public class Student implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public Student user(User user) {
-        this.user = user;
-        return this;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Set<Payment> getPayments() {

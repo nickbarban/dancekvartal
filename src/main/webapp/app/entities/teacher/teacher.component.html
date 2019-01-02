@@ -20,7 +20,6 @@
             <th><span jhiTranslate="dancekvartalApp.teacher.birthday">Birthday</span></th>
             <th><span jhiTranslate="dancekvartalApp.teacher.phone">Phone</span></th>
             <th><span jhiTranslate="dancekvartalApp.teacher.email">Email</span></th>
-            <th><span jhiTranslate="dancekvartalApp.teacher.user">User</span></th>
             <th></th>
             </tr>
             </thead>
@@ -32,9 +31,6 @@
                 <td>{{teacher.birthday | date:'medium'}}</td>
                 <td>{{teacher.phone}}</td>
                 <td>{{teacher.email}}</td>
-                <td>
-                    {{teacher.user?.id}}
-                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

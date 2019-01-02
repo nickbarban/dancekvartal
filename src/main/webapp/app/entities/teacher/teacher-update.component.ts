@@ -4,11 +4,9 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
-import { JhiAlertService } from 'ng-jhipster';
 
 import { ITeacher } from 'app/shared/model/teacher.model';
 import { TeacherService } from './teacher.service';
-import { IUser, UserService } from 'app/core';
 
 @Component({
     selector: 'jhi-teacher-update',
@@ -17,16 +15,9 @@ import { IUser, UserService } from 'app/core';
 export class TeacherUpdateComponent implements OnInit {
     teacher: ITeacher;
     isSaving: boolean;
-
-    users: IUser[];
     birthday: string;
 
-    constructor(
-        protected jhiAlertService: JhiAlertService,
-        protected teacherService: TeacherService,
-        protected userService: UserService,
-        protected activatedRoute: ActivatedRoute
-    ) {}
+    constructor(protected teacherService: TeacherService, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -34,12 +25,6 @@ export class TeacherUpdateComponent implements OnInit {
             this.teacher = teacher;
             this.birthday = this.teacher.birthday != null ? this.teacher.birthday.format(DATE_TIME_FORMAT) : null;
         });
-        this.userService.query().subscribe(
-            (res: HttpResponse<IUser[]>) => {
-                this.users = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
     }
 
     previousState() {
@@ -67,13 +52,5 @@ export class TeacherUpdateComponent implements OnInit {
 
     protected onSaveError() {
         this.isSaving = false;
-    }
-
-    protected onError(errorMessage: string) {
-        this.jhiAlertService.error(errorMessage, null, null);
-    }
-
-    trackUserById(index: number, item: IUser) {
-        return item.id;
     }
 }

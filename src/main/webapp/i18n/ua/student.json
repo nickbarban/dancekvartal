@@ -20,7 +20,6 @@
             "birthday": "Birthday",
             "phone": "Phone",
             "email": "Email",
-            "user": "User",
             "payment": "Payment"
         }
     }

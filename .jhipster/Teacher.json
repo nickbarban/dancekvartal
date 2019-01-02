@@ -31,16 +31,7 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "user",
-            "otherEntityName": "user",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "teacher"
-        }
-    ],
+    "relationships": [],
     "changelogDate": "20190102190635",
     "entityTableName": "teacher",
     "dto": "no",
