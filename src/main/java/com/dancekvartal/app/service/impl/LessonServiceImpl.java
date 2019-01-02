@@ -1,0 +1,80 @@
+package com.dancekvartal.app.service.impl;
+
+import com.dancekvartal.app.service.LessonService;
+import com.dancekvartal.app.domain.Lesson;
+import com.dancekvartal.app.repository.LessonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
+/**
+ * Service Implementation for managing Lesson.
+ */
+@Service
+@Transactional
+public class LessonServiceImpl implements LessonService {
+
+    private final Logger log = LoggerFactory.getLogger(LessonServiceImpl.class);
+
+    private final LessonRepository lessonRepository;
+
+    public LessonServiceImpl(LessonRepository lessonRepository) {
+        this.lessonRepository = lessonRepository;
+    }
+
+    /**
+     * Save a lesson.
+     *
+     * @param lesson the entity to save
+     * @return the persisted entity
+     */
+    @Override
+    public Lesson save(Lesson lesson) {
+        log.debug("Request to save Lesson : {}", lesson);
+        return lessonRepository.save(lesson);
+    }
+
+    /**
+     * Get all the lessons.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Lesson> findAll(Pageable pageable) {
+        log.debug("Request to get all Lessons");
+        return lessonRepository.findAll(pageable);
+    }
+
+
+    /**
+     * Get one lesson by id.
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Lesson> findOne(Long id) {
+        log.debug("Request to get Lesson : {}", id);
+        return lessonRepository.findById(id);
+    }
+
+    /**
+     * Delete the lesson by id.
+     *
+     * @param id the id of the entity
+     */
+    @Override
+    public void delete(Long id) {
+        log.debug("Request to delete Lesson : {}", id);
+        lessonRepository.deleteById(id);
+    }
+}
