@@ -43,7 +43,8 @@ describe('Student e2e test', () => {
             studentUpdatePage.setLastNameInput('lastName'),
             studentUpdatePage.setBirthdayInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
             studentUpdatePage.setPhoneInput('phone'),
-            studentUpdatePage.setEmailInput('email')
+            studentUpdatePage.setEmailInput('email'),
+            studentUpdatePage.userSelectLastOption()
         ]);
         expect(await studentUpdatePage.getFirstNameInput()).to.eq('firstName');
         expect(await studentUpdatePage.getLastNameInput()).to.eq('lastName');

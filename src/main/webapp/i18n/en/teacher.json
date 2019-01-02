@@ -19,7 +19,8 @@
             "lastName": "Last Name",
             "birthday": "Birthday",
             "phone": "Phone",
-            "email": "Email"
+            "email": "Email",
+            "user": "User"
         }
     }
 }

@@ -20,6 +20,7 @@
             <th><span jhiTranslate="dancekvartalApp.student.birthday">Birthday</span></th>
             <th><span jhiTranslate="dancekvartalApp.student.phone">Phone</span></th>
             <th><span jhiTranslate="dancekvartalApp.student.email">Email</span></th>
+            <th><span jhiTranslate="dancekvartalApp.student.user">User</span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,6 +32,9 @@
                 <td>{{student.birthday | date:'medium'}}</td>
                 <td>{{student.phone}}</td>
                 <td>{{student.email}}</td>
+                <td>
+                    {{student.user?.id}}
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
