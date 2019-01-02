@@ -19,13 +19,14 @@ id Long,
 entity Payment {
 	id Long,
     date Date required,
+    date Instant required,
     sum Long required
 }
 
 entity Lesson {
 id Long,
 name String required,
-date Date required
+date Instant required
 }
 
 entity Course {
