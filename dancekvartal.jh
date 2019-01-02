@@ -33,6 +33,14 @@ id Long,
 name String required
 }
 
+relationship OneToOne {
+	Student{user} to User
+}
+
+relationship OneToOne {
+	Teacher{user} to User
+}
+
 // defining multiple OneToMany relationships with comments
 relationship OneToMany {
     Student{payment} to Payment

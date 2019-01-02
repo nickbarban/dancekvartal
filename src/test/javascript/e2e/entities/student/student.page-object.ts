@@ -31,6 +31,7 @@ export class StudentUpdatePage {
     birthdayInput = element(by.id('field_birthday'));
     phoneInput = element(by.id('field_phone'));
     emailInput = element(by.id('field_email'));
+    userSelect = element(by.id('field_user'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -74,6 +75,25 @@ export class StudentUpdatePage {
 
     async getEmailInput() {
         return this.emailInput.getAttribute('value');
+    }
+
+    async userSelectLastOption() {
+        await this.userSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async userSelectOption(option) {
+        await this.userSelect.sendKeys(option);
+    }
+
+    getUserSelect(): ElementFinder {
+        return this.userSelect;
+    }
+
+    async getUserSelectedOption() {
+        return this.userSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

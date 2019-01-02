@@ -1,7 +1,8 @@
 {
     "global": {
         "title": "Dancekvartal",
-        "browsehappy": "Ваш браузер <strong>застарів</strong>. Будь ласка, <a href=\"http://browsehappy.com/?locale=ru\">оновіть ваш браузер</a>.",
+        "browsehappy":
+            "Ваш браузер <strong>застарів</strong>. Будь ласка, <a href=\"http://browsehappy.com/?locale=ru\">оновіть ваш браузер</a>.",
         "menu": {
             "home": "Головна",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
@@ -53,7 +54,8 @@
                 "authenticated": {
                     "prefix": "Якщо ви хочете",
                     "link": "авторизуватися",
-                    "suffix": ", ви можете спробувати облікові записи за замовчуванням:<br/>- Адмiністратор (логін=\"admin\" і пароль=\"admin\") <br/>- Користувач (логін=\"user\" і пароль=\"user\")."
+                    "suffix":
+                        ", ви можете спробувати облікові записи за замовчуванням:<br/>- Адмiністратор (логін=\"admin\" і пароль=\"admin\") <br/>- Користувач (логін=\"user\" і пароль=\"user\")."
                 },
                 "register": {
                     "noaccount": "У вас немає облікового запису?",

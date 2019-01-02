@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { DancekvartalSharedModule } from 'app/shared';
+import { DancekvartalAdminModule } from 'app/admin/admin.module';
 import {
     StudentComponent,
     StudentDetailComponent,
@@ -15,7 +16,7 @@ import {
 const ENTITY_STATES = [...studentRoute, ...studentPopupRoute];
 
 @NgModule({
-    imports: [DancekvartalSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [DancekvartalSharedModule, DancekvartalAdminModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         StudentComponent,
         StudentDetailComponent,

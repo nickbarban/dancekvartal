@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import { IUser } from 'app/core/user/user.model';
 
 export interface ITeacher {
     id?: number;
@@ -7,6 +8,7 @@ export interface ITeacher {
     birthday?: Moment;
     phone?: string;
     email?: string;
+    user?: IUser;
 }
 
 export class Teacher implements ITeacher {
@@ -16,6 +18,7 @@ export class Teacher implements ITeacher {
         public lastName?: string,
         public birthday?: Moment,
         public phone?: string,
-        public email?: string
+        public email?: string,
+        public user?: IUser
     ) {}
 }
