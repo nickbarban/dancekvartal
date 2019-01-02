@@ -1,0 +1,44 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "dancekvartal",
+    "packageName": "com.dancekvartal.app",
+    "packageFolder": "com/dancekvartal/app",
+    "serverPort": 8085,
+    "serviceDiscoveryType": "eureka",
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "maven",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "gatling",
+      "cucumber",
+      "protractor"
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "ua",
+      "en"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "5.7.2",
+    "jwtSecretKey": "MmQ4MzUzYTA0ZDQyM2ZjN2UxMTkwMGEzNzlhNDA3M2RlNDU5YjU2NmM1MzU2MTdjOWUxMWQ2MDAxMDc5MzI0OTVlZDQ2YmE0ZTc4NWM0YWY2NjEwYzdjNGQ3ZjAxYzI0Nzg4Njg4ZTE0MDYyZTMyOGRjZGVjMTg0NzkzZGZmMDg=",
+    "otherModules": []
+  },
+  "git-provider": "GitHub",
+  "git-company": "nickbarban",
+  "repository-name": "dancekvartal"
+}
