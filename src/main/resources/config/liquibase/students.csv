@@ -1,0 +1,8 @@
+id;first_name;last_name;birthday;phone;email;created_by;last_modified_by
+1;Nick;Barban;null;null;nbarban@localhost;system;system
+2;Cate;Barban;null;null;cbarban@localhost;system;system
+3;Vlad;Gorkov;null;null;vgorkov@localhost;system;system
+4;Sasha;Esenin;null;null;sesenin@localhost;system;system
+5;Misha;Bulgakov;null;null;mbulgakov@localhost;system;system
+6;Sergey;Vaisman;null;null;svaisman@localhost;system;system
+7;Artem;Petrov;null;null;apetrov@localhost;system;system
