@@ -24,7 +24,7 @@
         "testFrameworks": ["gatling", "cucumber", "protractor"],
         "enableTranslation": true,
         "nativeLanguage": "en",
-        "languages": ["ua", "en"],
+        "languages": ["ua", "en", "ru"],
         "clientFramework": "angularX",
         "jhiPrefix": "jhi",
         "jhipsterVersion": "5.7.2",
