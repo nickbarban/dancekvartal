@@ -52,8 +52,11 @@ public class StudentResourceIntTest {
     private static final Instant DEFAULT_BIRTHDAY = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_BIRTHDAY = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final String DEFAULT_PHONE = "AAAAAAAAAA";
-    private static final String UPDATED_PHONE = "BBBBBBBBBB";
+    private static final String DEFAULT_PERSONAL_PHONE = "AAAAAAAAAA";
+    private static final String UPDATED_PERSONAL_PHONE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PARENT_PHONE = "AAAAAAAAAA";
+    private static final String UPDATED_PARENT_PHONE = "BBBBBBBBBB";
 
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
@@ -106,7 +109,8 @@ public class StudentResourceIntTest {
             .firstName(DEFAULT_FIRST_NAME)
             .lastName(DEFAULT_LAST_NAME)
             .birthday(DEFAULT_BIRTHDAY)
-            .phone(DEFAULT_PHONE)
+            .personalPhone(DEFAULT_PERSONAL_PHONE)
+            .parentPhone(DEFAULT_PARENT_PHONE)
             .email(DEFAULT_EMAIL);
         return student;
     }
@@ -134,7 +138,8 @@ public class StudentResourceIntTest {
         assertThat(testStudent.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
         assertThat(testStudent.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testStudent.getBirthday()).isEqualTo(DEFAULT_BIRTHDAY);
-        assertThat(testStudent.getPhone()).isEqualTo(DEFAULT_PHONE);
+        assertThat(testStudent.getPersonalPhone()).isEqualTo(DEFAULT_PERSONAL_PHONE);
+        assertThat(testStudent.getParentPhone()).isEqualTo(DEFAULT_PARENT_PHONE);
         assertThat(testStudent.getEmail()).isEqualTo(DEFAULT_EMAIL);
     }
 
@@ -195,10 +200,10 @@ public class StudentResourceIntTest {
 
     @Test
     @Transactional
-    public void checkPhoneIsRequired() throws Exception {
+    public void checkPersonalPhoneIsRequired() throws Exception {
         int databaseSizeBeforeTest = studentRepository.findAll().size();
         // set the field null
-        student.setPhone(null);
+        student.setPersonalPhone(null);
 
         // Create the Student, which fails.
 
@@ -225,7 +230,8 @@ public class StudentResourceIntTest {
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
             .andExpect(jsonPath("$.[*].birthday").value(hasItem(DEFAULT_BIRTHDAY.toString())))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
+            .andExpect(jsonPath("$.[*].personalPhone").value(hasItem(DEFAULT_PERSONAL_PHONE.toString())))
+            .andExpect(jsonPath("$.[*].parentPhone").value(hasItem(DEFAULT_PARENT_PHONE.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
     }
     
@@ -243,7 +249,8 @@ public class StudentResourceIntTest {
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
             .andExpect(jsonPath("$.birthday").value(DEFAULT_BIRTHDAY.toString()))
-            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
+            .andExpect(jsonPath("$.personalPhone").value(DEFAULT_PERSONAL_PHONE.toString()))
+            .andExpect(jsonPath("$.parentPhone").value(DEFAULT_PARENT_PHONE.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
     }
 
@@ -271,7 +278,8 @@ public class StudentResourceIntTest {
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .birthday(UPDATED_BIRTHDAY)
-            .phone(UPDATED_PHONE)
+            .personalPhone(UPDATED_PERSONAL_PHONE)
+            .parentPhone(UPDATED_PARENT_PHONE)
             .email(UPDATED_EMAIL);
 
         restStudentMockMvc.perform(put("/api/students")
@@ -286,7 +294,8 @@ public class StudentResourceIntTest {
         assertThat(testStudent.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testStudent.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testStudent.getBirthday()).isEqualTo(UPDATED_BIRTHDAY);
-        assertThat(testStudent.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testStudent.getPersonalPhone()).isEqualTo(UPDATED_PERSONAL_PHONE);
+        assertThat(testStudent.getParentPhone()).isEqualTo(UPDATED_PARENT_PHONE);
         assertThat(testStudent.getEmail()).isEqualTo(UPDATED_EMAIL);
     }
 

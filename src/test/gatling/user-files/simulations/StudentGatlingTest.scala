@@ -75,7 +75,8 @@ class StudentGatlingTest extends Simulation {
                 , "firstName":"SAMPLE_TEXT"
                 , "lastName":"SAMPLE_TEXT"
                 , "birthday":"2020-01-01T00:00:00.000Z"
-                , "phone":"SAMPLE_TEXT"
+                , "personalPhone":"SAMPLE_TEXT"
+                , "parentPhone":"SAMPLE_TEXT"
                 , "email":"SAMPLE_TEXT"
                 }""")).asJSON
             .check(status.is(201))

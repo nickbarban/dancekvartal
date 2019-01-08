@@ -18,7 +18,8 @@
             "firstName": "First Name",
             "lastName": "Last Name",
             "birthday": "Birthday",
-            "phone": "Phone",
+            "personalPhone": "Personal Phone",
+            "parentPhone": "Parent Phone",
             "email": "Email",
             "payment": "Payment"
         }

@@ -42,13 +42,15 @@ describe('Student e2e test', () => {
             studentUpdatePage.setFirstNameInput('firstName'),
             studentUpdatePage.setLastNameInput('lastName'),
             studentUpdatePage.setBirthdayInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
-            studentUpdatePage.setPhoneInput('phone'),
+            studentUpdatePage.setPersonalPhoneInput('personalPhone'),
+            studentUpdatePage.setParentPhoneInput('parentPhone'),
             studentUpdatePage.setEmailInput('email')
         ]);
         expect(await studentUpdatePage.getFirstNameInput()).to.eq('firstName');
         expect(await studentUpdatePage.getLastNameInput()).to.eq('lastName');
         expect(await studentUpdatePage.getBirthdayInput()).to.contain('2001-01-01T02:30');
-        expect(await studentUpdatePage.getPhoneInput()).to.eq('phone');
+        expect(await studentUpdatePage.getPersonalPhoneInput()).to.eq('personalPhone');
+        expect(await studentUpdatePage.getParentPhoneInput()).to.eq('parentPhone');
         expect(await studentUpdatePage.getEmailInput()).to.eq('email');
         await studentUpdatePage.save();
         expect(await studentUpdatePage.getSaveButton().isPresent()).to.be.false;

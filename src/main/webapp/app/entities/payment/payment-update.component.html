@@ -46,7 +46,7 @@
                     <label class="form-control-label" jhiTranslate="dancekvartalApp.payment.student" for="field_student">Student</label>
                     <select class="form-control" id="field_student" name="student" [(ngModel)]="payment.student" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="studentOption.id === payment.student?.id ? payment.student : studentOption" *ngFor="let studentOption of students; trackBy: trackStudentById">{{studentOption.id}}</option>
+                        <option [ngValue]="studentOption.id === payment.student?.id ? payment.student : studentOption" *ngFor="let studentOption of students; trackBy: trackStudentById">{{studentOption.firstName}} {{studentOption.lastName}}</option>
                     </select>
                 </div>
             </div>

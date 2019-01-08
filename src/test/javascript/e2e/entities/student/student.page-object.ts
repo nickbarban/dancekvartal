@@ -29,7 +29,8 @@ export class StudentUpdatePage {
     firstNameInput = element(by.id('field_firstName'));
     lastNameInput = element(by.id('field_lastName'));
     birthdayInput = element(by.id('field_birthday'));
-    phoneInput = element(by.id('field_phone'));
+    personalPhoneInput = element(by.id('field_personalPhone'));
+    parentPhoneInput = element(by.id('field_parentPhone'));
     emailInput = element(by.id('field_email'));
 
     async getPageTitle() {
@@ -60,12 +61,20 @@ export class StudentUpdatePage {
         return this.birthdayInput.getAttribute('value');
     }
 
-    async setPhoneInput(phone) {
-        await this.phoneInput.sendKeys(phone);
+    async setPersonalPhoneInput(personalPhone) {
+        await this.personalPhoneInput.sendKeys(personalPhone);
     }
 
-    async getPhoneInput() {
-        return this.phoneInput.getAttribute('value');
+    async getPersonalPhoneInput() {
+        return this.personalPhoneInput.getAttribute('value');
+    }
+
+    async setParentPhoneInput(parentPhone) {
+        await this.parentPhoneInput.sendKeys(parentPhone);
+    }
+
+    async getParentPhoneInput() {
+        return this.parentPhoneInput.getAttribute('value');
     }
 
     async setEmailInput(email) {

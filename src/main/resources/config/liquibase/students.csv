@@ -1,4 +1,4 @@
-id;first_name;last_name;birthday;phone;email
+id;first_name;last_name;birthday;personal_phone;email
 1;Nick;Barban;null;0981234567;nbarban@localhost
 2;Cate;Barban;null;0981234567;cbarban@localhost
 3;Vlad;Gorkov;null;0981234567;vgorkov@localhost

@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new Student(0, 'AAAAAAA', 'AAAAAAA', currentDate, 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new Student(0, 'AAAAAAA', 'AAAAAAA', currentDate, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
         });
 
         describe('Service methods', async () => {
@@ -73,7 +73,8 @@ describe('Service Tests', () => {
                         firstName: 'BBBBBB',
                         lastName: 'BBBBBB',
                         birthday: currentDate.format(DATE_TIME_FORMAT),
-                        phone: 'BBBBBB',
+                        personalPhone: 'BBBBBB',
+                        parentPhone: 'BBBBBB',
                         email: 'BBBBBB'
                     },
                     elemDefault
@@ -99,7 +100,8 @@ describe('Service Tests', () => {
                         firstName: 'BBBBBB',
                         lastName: 'BBBBBB',
                         birthday: currentDate.format(DATE_TIME_FORMAT),
-                        phone: 'BBBBBB',
+                        personalPhone: 'BBBBBB',
+                        parentPhone: 'BBBBBB',
                         email: 'BBBBBB'
                     },
                     elemDefault

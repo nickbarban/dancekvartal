@@ -40,8 +40,11 @@ public class Student implements Serializable {
     private Instant birthday;
 
     @NotNull
-    @Column(name = "phone", nullable = false)
-    private String phone;
+    @Column(name = "personal_phone", nullable = false)
+    private String personalPhone;
+
+    @Column(name = "parent_phone")
+    private String parentPhone;
 
     @Column(name = "email")
     private String email;
@@ -97,17 +100,30 @@ public class Student implements Serializable {
         this.birthday = birthday;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPersonalPhone() {
+        return personalPhone;
     }
 
-    public Student phone(String phone) {
-        this.phone = phone;
+    public Student personalPhone(String personalPhone) {
+        this.personalPhone = personalPhone;
         return this;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPersonalPhone(String personalPhone) {
+        this.personalPhone = personalPhone;
+    }
+
+    public String getParentPhone() {
+        return parentPhone;
+    }
+
+    public Student parentPhone(String parentPhone) {
+        this.parentPhone = parentPhone;
+        return this;
+    }
+
+    public void setParentPhone(String parentPhone) {
+        this.parentPhone = parentPhone;
     }
 
     public String getEmail() {
@@ -176,7 +192,8 @@ public class Student implements Serializable {
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", birthday='" + getBirthday() + "'" +
-            ", phone='" + getPhone() + "'" +
+            ", personalPhone='" + getPersonalPhone() + "'" +
+            ", parentPhone='" + getParentPhone() + "'" +
             ", email='" + getEmail() + "'" +
             "}";
     }

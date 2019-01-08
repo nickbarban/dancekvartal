@@ -39,15 +39,20 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="dancekvartalApp.student.phone" for="field_phone">Phone</label>
-                    <input type="text" class="form-control" name="phone" id="field_phone"
-                        [(ngModel)]="student.phone" required/>
-                    <div [hidden]="!(editForm.controls.phone?.dirty && editForm.controls.phone?.invalid)">
+                    <label class="form-control-label" jhiTranslate="dancekvartalApp.student.personalPhone" for="field_personalPhone">Personal Phone</label>
+                    <input type="text" class="form-control" name="personalPhone" id="field_personalPhone"
+                        [(ngModel)]="student.personalPhone" required/>
+                    <div [hidden]="!(editForm.controls.personalPhone?.dirty && editForm.controls.personalPhone?.invalid)">
                         <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.phone?.errors?.required" jhiTranslate="entity.validation.required">
+                        [hidden]="!editForm.controls.personalPhone?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                         </small>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dancekvartalApp.student.parentPhone" for="field_parentPhone">Parent Phone</label>
+                    <input type="text" class="form-control" name="parentPhone" id="field_parentPhone"
+                        [(ngModel)]="student.parentPhone" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="dancekvartalApp.student.email" for="field_email">Email</label>

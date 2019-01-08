@@ -6,7 +6,8 @@ export interface IStudent {
     firstName?: string;
     lastName?: string;
     birthday?: Moment;
-    phone?: string;
+    personalPhone?: string;
+    parentPhone?: string;
     email?: string;
     payments?: IPayment[];
 }
@@ -17,7 +18,8 @@ export class Student implements IStudent {
         public firstName?: string,
         public lastName?: string,
         public birthday?: Moment,
-        public phone?: string,
+        public personalPhone?: string,
+        public parentPhone?: string,
         public email?: string,
         public payments?: IPayment[]
     ) {}

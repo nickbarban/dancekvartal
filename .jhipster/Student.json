@@ -20,11 +20,15 @@
             "fieldType": "Instant"
         },
         {
-            "fieldName": "phone",
+            "fieldName": "personalPhone",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "parentPhone",
+            "fieldType": "String"
         },
         {
             "fieldName": "email",
