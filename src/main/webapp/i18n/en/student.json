@@ -21,8 +21,9 @@
             "personalPhone": "Personal Phone",
             "parentPhone": "Parent Phone",
             "email": "Email",
+            "lastPayDate": "Last Pay Date",
             "payment": "Payment",
-            "lesson": "Lesson"
+            "payments": "Payments"
         }
     }
 }

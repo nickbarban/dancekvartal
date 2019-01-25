@@ -1,17 +1,25 @@
 package com.dancekvartal.app.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.util.CollectionUtils;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Student.
@@ -49,13 +57,12 @@ public class Student implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "student")
+    @Column(name = "last_pay_date")
+    private Instant lastPayDate;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Payment> payments = new HashSet<>();
-    @ManyToMany(mappedBy = "students")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JsonIgnore
-    private Set<Lesson> lessons = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -144,6 +151,19 @@ public class Student implements Serializable {
         this.email = email;
     }
 
+    public Instant getLastPayDate() {
+        return lastPayDate;
+    }
+
+    public Student lastPayDate(Instant lastPayDate) {
+        this.lastPayDate = lastPayDate;
+        return this;
+    }
+
+    public void setLastPayDate(Instant lastPayDate) {
+        this.lastPayDate = lastPayDate;
+    }
+
     public Set<Payment> getPayments() {
         return payments;
     }
@@ -156,42 +176,23 @@ public class Student implements Serializable {
     public Student addPayment(Payment payment) {
         this.payments.add(payment);
         payment.setStudent(this);
+        this.lastPayDate = this.payments.stream().max(Comparator.comparing(Payment::getDate)).get().getDate();
         return this;
     }
 
     public Student removePayment(Payment payment) {
         this.payments.remove(payment);
         payment.setStudent(null);
+        if (CollectionUtils.isEmpty(this.payments)) {
+            this.lastPayDate = this.payments.stream().max(Comparator.comparing(Payment::getDate)).get().getDate();
+        } else {
+            this.lastPayDate = null;
+        }
         return this;
     }
 
     public void setPayments(Set<Payment> payments) {
         this.payments = payments;
-    }
-
-    public Set<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public Student lessons(Set<Lesson> lessons) {
-        this.lessons = lessons;
-        return this;
-    }
-
-    public Student addLesson(Lesson lesson) {
-        this.lessons.add(lesson);
-        lesson.getStudents().add(this);
-        return this;
-    }
-
-    public Student removeLesson(Lesson lesson) {
-        this.lessons.remove(lesson);
-        lesson.getStudents().remove(this);
-        return this;
-    }
-
-    public void setLessons(Set<Lesson> lessons) {
-        this.lessons = lessons;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -225,6 +226,7 @@ public class Student implements Serializable {
             ", personalPhone='" + getPersonalPhone() + "'" +
             ", parentPhone='" + getParentPhone() + "'" +
             ", email='" + getEmail() + "'" +
+            ", lastPayDate='" + getLastPayDate() + "'" +
             "}";
     }
 }

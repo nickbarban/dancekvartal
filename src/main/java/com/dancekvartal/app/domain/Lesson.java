@@ -4,14 +4,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Lesson.
@@ -43,8 +52,8 @@ public class Lesson implements Serializable {
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "lesson_student",
-               joinColumns = @JoinColumn(name = "lessons_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "students_id", referencedColumnName = "id"))
+        joinColumns = @JoinColumn(name = "lessons_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "students_id", referencedColumnName = "id"))
     private Set<Student> students = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -106,13 +115,13 @@ public class Lesson implements Serializable {
 
     public Lesson addStudent(Student student) {
         this.students.add(student);
-        student.getLessons().add(this);
+//        student.getLessons().add(this);
         return this;
     }
 
     public Lesson removeStudent(Student student) {
         this.students.remove(student);
-        student.getLessons().remove(this);
+//        student.getLessons().remove(this);
         return this;
     }
 

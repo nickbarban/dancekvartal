@@ -61,6 +61,9 @@ public class StudentResourceIntTest {
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
 
+    private static final Instant DEFAULT_LAST_PAY_DATE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_LAST_PAY_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
     @Autowired
     private StudentRepository studentRepository;
 
@@ -111,7 +114,8 @@ public class StudentResourceIntTest {
             .birthday(DEFAULT_BIRTHDAY)
             .personalPhone(DEFAULT_PERSONAL_PHONE)
             .parentPhone(DEFAULT_PARENT_PHONE)
-            .email(DEFAULT_EMAIL);
+            .email(DEFAULT_EMAIL)
+            .lastPayDate(DEFAULT_LAST_PAY_DATE);
         return student;
     }
 
@@ -141,6 +145,7 @@ public class StudentResourceIntTest {
         assertThat(testStudent.getPersonalPhone()).isEqualTo(DEFAULT_PERSONAL_PHONE);
         assertThat(testStudent.getParentPhone()).isEqualTo(DEFAULT_PARENT_PHONE);
         assertThat(testStudent.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testStudent.getLastPayDate()).isEqualTo(DEFAULT_LAST_PAY_DATE);
     }
 
     @Test
@@ -232,7 +237,8 @@ public class StudentResourceIntTest {
             .andExpect(jsonPath("$.[*].birthday").value(hasItem(DEFAULT_BIRTHDAY.toString())))
             .andExpect(jsonPath("$.[*].personalPhone").value(hasItem(DEFAULT_PERSONAL_PHONE.toString())))
             .andExpect(jsonPath("$.[*].parentPhone").value(hasItem(DEFAULT_PARENT_PHONE.toString())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].lastPayDate").value(hasItem(DEFAULT_LAST_PAY_DATE.toString())));
     }
     
     @Test
@@ -251,7 +257,8 @@ public class StudentResourceIntTest {
             .andExpect(jsonPath("$.birthday").value(DEFAULT_BIRTHDAY.toString()))
             .andExpect(jsonPath("$.personalPhone").value(DEFAULT_PERSONAL_PHONE.toString()))
             .andExpect(jsonPath("$.parentPhone").value(DEFAULT_PARENT_PHONE.toString()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.lastPayDate").value(DEFAULT_LAST_PAY_DATE.toString()));
     }
 
     @Test
@@ -280,7 +287,8 @@ public class StudentResourceIntTest {
             .birthday(UPDATED_BIRTHDAY)
             .personalPhone(UPDATED_PERSONAL_PHONE)
             .parentPhone(UPDATED_PARENT_PHONE)
-            .email(UPDATED_EMAIL);
+            .email(UPDATED_EMAIL)
+            .lastPayDate(UPDATED_LAST_PAY_DATE);
 
         restStudentMockMvc.perform(put("/api/students")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -297,6 +305,7 @@ public class StudentResourceIntTest {
         assertThat(testStudent.getPersonalPhone()).isEqualTo(UPDATED_PERSONAL_PHONE);
         assertThat(testStudent.getParentPhone()).isEqualTo(UPDATED_PARENT_PHONE);
         assertThat(testStudent.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testStudent.getLastPayDate()).isEqualTo(UPDATED_LAST_PAY_DATE);
     }
 
     @Test

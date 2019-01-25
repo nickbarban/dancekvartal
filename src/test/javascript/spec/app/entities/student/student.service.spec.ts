@@ -25,14 +25,15 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new Student(0, 'AAAAAAA', 'AAAAAAA', currentDate, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new Student(0, 'AAAAAAA', 'AAAAAAA', currentDate, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate);
         });
 
         describe('Service methods', async () => {
             it('should find an element', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        birthday: currentDate.format(DATE_TIME_FORMAT)
+                        birthday: currentDate.format(DATE_TIME_FORMAT),
+                        lastPayDate: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
@@ -49,13 +50,15 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
-                        birthday: currentDate.format(DATE_TIME_FORMAT)
+                        birthday: currentDate.format(DATE_TIME_FORMAT),
+                        lastPayDate: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        birthday: currentDate
+                        birthday: currentDate,
+                        lastPayDate: currentDate
                     },
                     returnedFromService
                 );
@@ -75,14 +78,16 @@ describe('Service Tests', () => {
                         birthday: currentDate.format(DATE_TIME_FORMAT),
                         personalPhone: 'BBBBBB',
                         parentPhone: 'BBBBBB',
-                        email: 'BBBBBB'
+                        email: 'BBBBBB',
+                        lastPayDate: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
 
                 const expected = Object.assign(
                     {
-                        birthday: currentDate
+                        birthday: currentDate,
+                        lastPayDate: currentDate
                     },
                     returnedFromService
                 );
@@ -102,13 +107,15 @@ describe('Service Tests', () => {
                         birthday: currentDate.format(DATE_TIME_FORMAT),
                         personalPhone: 'BBBBBB',
                         parentPhone: 'BBBBBB',
-                        email: 'BBBBBB'
+                        email: 'BBBBBB',
+                        lastPayDate: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        birthday: currentDate
+                        birthday: currentDate,
+                        lastPayDate: currentDate
                     },
                     returnedFromService
                 );

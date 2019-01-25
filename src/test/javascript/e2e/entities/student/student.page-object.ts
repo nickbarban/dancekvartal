@@ -32,6 +32,7 @@ export class StudentUpdatePage {
     personalPhoneInput = element(by.id('field_personalPhone'));
     parentPhoneInput = element(by.id('field_parentPhone'));
     emailInput = element(by.id('field_email'));
+    lastPayDateInput = element(by.id('field_lastPayDate'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -83,6 +84,14 @@ export class StudentUpdatePage {
 
     async getEmailInput() {
         return this.emailInput.getAttribute('value');
+    }
+
+    async setLastPayDateInput(lastPayDate) {
+        await this.lastPayDateInput.sendKeys(lastPayDate);
+    }
+
+    async getLastPayDateInput() {
+        return this.lastPayDateInput.getAttribute('value');
     }
 
     async save() {

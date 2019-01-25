@@ -51,7 +51,8 @@ export class StudentService {
 
     protected convertDateFromClient(student: IStudent): IStudent {
         const copy: IStudent = Object.assign({}, student, {
-            birthday: student.birthday != null && student.birthday.isValid() ? student.birthday.toJSON() : null
+            birthday: student.birthday != null && student.birthday.isValid() ? student.birthday.toJSON() : null,
+            lastPayDate: student.lastPayDate != null && student.lastPayDate.isValid() ? student.lastPayDate.toJSON() : null
         });
         return copy;
     }
@@ -59,6 +60,7 @@ export class StudentService {
     protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
         if (res.body) {
             res.body.birthday = res.body.birthday != null ? moment(res.body.birthday) : null;
+            res.body.lastPayDate = res.body.lastPayDate != null ? moment(res.body.lastPayDate) : null;
         }
         return res;
     }
@@ -67,6 +69,7 @@ export class StudentService {
         if (res.body) {
             res.body.forEach((student: IStudent) => {
                 student.birthday = student.birthday != null ? moment(student.birthday) : null;
+                student.lastPayDate = student.lastPayDate != null ? moment(student.lastPayDate) : null;
             });
         }
         return res;

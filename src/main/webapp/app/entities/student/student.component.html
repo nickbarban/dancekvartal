@@ -21,6 +21,8 @@
             <th><span jhiTranslate="dancekvartalApp.student.personalPhone">Personal Phone</span></th>
             <th><span jhiTranslate="dancekvartalApp.student.parentPhone">Parent Phone</span></th>
             <th><span jhiTranslate="dancekvartalApp.student.email">Email</span></th>
+            <th><span jhiTranslate="dancekvartalApp.student.payments">Payments</span></th>
+            <th><span jhiTranslate="dancekvartalApp.student.lastPayDate">Last Pay Date</span></th>
             <th></th>
             </tr>
             </thead>
@@ -33,6 +35,8 @@
                 <td>{{student.personalPhone}}</td>
                 <td>{{student.parentPhone}}</td>
                 <td>{{student.email}}</td>
+                <td>{{getPaymentsCount(student)}}</td>
+                <td>{{student.lastPayDate | date:'mediumDate'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

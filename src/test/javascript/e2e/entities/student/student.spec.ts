@@ -44,7 +44,8 @@ describe('Student e2e test', () => {
             studentUpdatePage.setBirthdayInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
             studentUpdatePage.setPersonalPhoneInput('personalPhone'),
             studentUpdatePage.setParentPhoneInput('parentPhone'),
-            studentUpdatePage.setEmailInput('email')
+            studentUpdatePage.setEmailInput('email'),
+            studentUpdatePage.setLastPayDateInput('01/01/2001' + protractor.Key.TAB + '02:30AM')
         ]);
         expect(await studentUpdatePage.getFirstNameInput()).to.eq('firstName');
         expect(await studentUpdatePage.getLastNameInput()).to.eq('lastName');
@@ -52,6 +53,7 @@ describe('Student e2e test', () => {
         expect(await studentUpdatePage.getPersonalPhoneInput()).to.eq('personalPhone');
         expect(await studentUpdatePage.getParentPhoneInput()).to.eq('parentPhone');
         expect(await studentUpdatePage.getEmailInput()).to.eq('email');
+        expect(await studentUpdatePage.getLastPayDateInput()).to.contain('2001-01-01T02:30');
         await studentUpdatePage.save();
         expect(await studentUpdatePage.getSaveButton().isPresent()).to.be.false;
 

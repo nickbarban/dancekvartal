@@ -33,6 +33,10 @@
         {
             "fieldName": "email",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "lastPayDate",
+            "fieldType": "Instant"
         }
     ],
     "relationships": [

@@ -1,6 +1,5 @@
 import { Moment } from 'moment';
 import { IPayment } from 'app/shared/model//payment.model';
-import { ILesson } from 'app/shared/model//lesson.model';
 
 export interface IStudent {
     id?: number;
@@ -10,8 +9,8 @@ export interface IStudent {
     personalPhone?: string;
     parentPhone?: string;
     email?: string;
+    lastPayDate?: Moment;
     payments?: IPayment[];
-    lessons?: ILesson[];
 }
 
 export class Student implements IStudent {
@@ -23,7 +22,7 @@ export class Student implements IStudent {
         public personalPhone?: string,
         public parentPhone?: string,
         public email?: string,
-        public payments?: IPayment[],
-        public lessons?: ILesson[]
+        public lastPayDate?: Moment,
+        public payments?: IPayment[]
     ) {}
 }

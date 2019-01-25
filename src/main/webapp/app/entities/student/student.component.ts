@@ -55,4 +55,12 @@ export class StudentComponent implements OnInit, OnDestroy {
     protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
+
+    getPaymentsCount(student: IStudent) {
+        if (student.payments === null) {
+            return 0;
+        } else {
+            return student.payments.length;
+        }
+    }
 }

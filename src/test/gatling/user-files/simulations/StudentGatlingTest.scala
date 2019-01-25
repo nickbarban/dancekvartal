@@ -78,6 +78,7 @@ class StudentGatlingTest extends Simulation {
                 , "personalPhone":"SAMPLE_TEXT"
                 , "parentPhone":"SAMPLE_TEXT"
                 , "email":"SAMPLE_TEXT"
+                , "lastPayDate":"2020-01-01T00:00:00.000Z"
                 }""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_student_url"))).exitHereIfFailed

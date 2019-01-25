@@ -20,4 +20,5 @@
     <include file="config/liquibase/dml/20190102_teachers.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/dml/20190108_courses.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/dml/20190108_lessons.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/dml/20190108_payments.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
