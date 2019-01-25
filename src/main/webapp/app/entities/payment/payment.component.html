@@ -24,7 +24,7 @@
             <tbody>
             <tr *ngFor="let payment of payments ;trackBy: trackId">
                 <td><a [routerLink]="['/payment', payment.id, 'view' ]">{{payment.id}}</a></td>
-                <td>{{payment.date | date:'medium'}}</td>
+                <td>{{payment.date | date:'mediumDate'}}</td>
                 <td>{{payment.sum}}</td>
                 <td>
                     <div *ngIf="payment.student">

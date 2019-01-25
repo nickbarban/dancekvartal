@@ -16,7 +16,9 @@
                 "title": "Lesson"
             },
             "name": "Name",
-            "date": "Date"
+            "date": "Date",
+            "teacher": "Teacher",
+            "student": "Student"
         }
     }
 }

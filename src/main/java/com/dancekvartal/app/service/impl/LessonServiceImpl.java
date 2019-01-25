@@ -53,6 +53,15 @@ public class LessonServiceImpl implements LessonService {
         return lessonRepository.findAll(pageable);
     }
 
+    /**
+     * Get all the Lesson with eager load of many-to-many relationships.
+     *
+     * @return the list of entities
+     */
+    public Page<Lesson> findAllWithEagerRelationships(Pageable pageable) {
+        return lessonRepository.findAllWithEagerRelationships(pageable);
+    }
+    
 
     /**
      * Get one lesson by id.
@@ -64,7 +73,7 @@ public class LessonServiceImpl implements LessonService {
     @Transactional(readOnly = true)
     public Optional<Lesson> findOne(Long id) {
         log.debug("Request to get Lesson : {}", id);
-        return lessonRepository.findById(id);
+        return lessonRepository.findOneWithEagerRelationships(id);
     }
 
     /**

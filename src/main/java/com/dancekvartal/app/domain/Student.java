@@ -52,6 +52,11 @@ public class Student implements Serializable {
     @OneToMany(mappedBy = "student")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Payment> payments = new HashSet<>();
+    @ManyToMany(mappedBy = "students")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<Lesson> lessons = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -162,6 +167,31 @@ public class Student implements Serializable {
 
     public void setPayments(Set<Payment> payments) {
         this.payments = payments;
+    }
+
+    public Set<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public Student lessons(Set<Lesson> lessons) {
+        this.lessons = lessons;
+        return this;
+    }
+
+    public Student addLesson(Lesson lesson) {
+        this.lessons.add(lesson);
+        lesson.getStudents().add(this);
+        return this;
+    }
+
+    public Student removeLesson(Lesson lesson) {
+        this.lessons.remove(lesson);
+        lesson.getStudents().remove(this);
+        return this;
+    }
+
+    public void setLessons(Set<Lesson> lessons) {
+        this.lessons = lessons;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

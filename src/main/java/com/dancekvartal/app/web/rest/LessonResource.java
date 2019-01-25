@@ -86,14 +86,20 @@ public class LessonResource {
      * GET  /lessons : get all the lessons.
      *
      * @param pageable the pagination information
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @return the ResponseEntity with status 200 (OK) and the list of lessons in body
      */
     @GetMapping("/lessons")
     @Timed
-    public ResponseEntity<List<Lesson>> getAllLessons(Pageable pageable) {
+    public ResponseEntity<List<Lesson>> getAllLessons(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Lessons");
-        Page<Lesson> page = lessonService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/lessons");
+        Page<Lesson> page;
+        if (eagerload) {
+            page = lessonService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = lessonService.findAll(pageable);
+        }
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/lessons?eagerload=%b", eagerload));
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 

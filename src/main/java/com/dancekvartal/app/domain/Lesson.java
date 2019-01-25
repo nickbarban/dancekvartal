@@ -1,5 +1,6 @@
 package com.dancekvartal.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +9,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -32,6 +35,17 @@ public class Lesson implements Serializable {
     @NotNull
     @Column(name = "jhi_date", nullable = false)
     private Instant date;
+
+    @ManyToOne
+    @JsonIgnoreProperties("")
+    private Teacher teacher;
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "lesson_student",
+               joinColumns = @JoinColumn(name = "lessons_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "students_id", referencedColumnName = "id"))
+    private Set<Student> students = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -66,6 +80,44 @@ public class Lesson implements Serializable {
 
     public void setDate(Instant date) {
         this.date = date;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public Lesson teacher(Teacher teacher) {
+        this.teacher = teacher;
+        return this;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public Lesson students(Set<Student> students) {
+        this.students = students;
+        return this;
+    }
+
+    public Lesson addStudent(Student student) {
+        this.students.add(student);
+        student.getLessons().add(this);
+        return this;
+    }
+
+    public Lesson removeStudent(Student student) {
+        this.students.remove(student);
+        student.getLessons().remove(this);
+        return this;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

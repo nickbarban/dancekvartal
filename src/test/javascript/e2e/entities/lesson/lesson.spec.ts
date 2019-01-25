@@ -40,7 +40,9 @@ describe('Lesson e2e test', () => {
         await lessonComponentsPage.clickOnCreateButton();
         await promise.all([
             lessonUpdatePage.setNameInput('name'),
-            lessonUpdatePage.setDateInput('01/01/2001' + protractor.Key.TAB + '02:30AM')
+            lessonUpdatePage.setDateInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
+            lessonUpdatePage.teacherSelectLastOption()
+            // lessonUpdatePage.studentSelectLastOption(),
         ]);
         expect(await lessonUpdatePage.getNameInput()).to.eq('name');
         expect(await lessonUpdatePage.getDateInput()).to.contain('2001-01-01T02:30');
