@@ -9,6 +9,18 @@
                 <dd>
                     <span>{{course.name}}</span>
                 </dd>
+                <dt><span jhiTranslate="dancekvartalApp.course.teacher">Teacher</span></dt>
+                <dd>
+                    <div *ngIf="course.teacher">
+                        <a [routerLink]="['/teacher', course.teacher?.id, 'view']">{{course.teacher?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="dancekvartalApp.course.student">Student</span></dt>
+                <dd>
+                    <span *ngFor="let student of course.students; let last = last">
+                        <a [routerLink]="['/student', student?.id, 'view' ]">{{student.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
             </dl>
 
             <button type="submit"

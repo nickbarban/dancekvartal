@@ -4,23 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Objects;
 
 /**
  * A Lesson.
@@ -45,16 +36,17 @@ public class Lesson implements Serializable {
     @Column(name = "jhi_date", nullable = false)
     private Instant date;
 
-    @ManyToOne
-    @JsonIgnoreProperties("")
-    private Teacher teacher;
-
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "lesson_student",
-        joinColumns = @JoinColumn(name = "lessons_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "students_id", referencedColumnName = "id"))
+               joinColumns = @JoinColumn(name = "lessons_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "students_id", referencedColumnName = "id"))
     private Set<Student> students = new HashSet<>();
+
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties("lessons")
+    private Course course;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -91,19 +83,6 @@ public class Lesson implements Serializable {
         this.date = date;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public Lesson teacher(Teacher teacher) {
-        this.teacher = teacher;
-        return this;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-
     public Set<Student> getStudents() {
         return students;
     }
@@ -127,6 +106,19 @@ public class Lesson implements Serializable {
 
     public void setStudents(Set<Student> students) {
         this.students = students;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public Lesson course(Course course) {
+        this.course = course;
+        return this;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

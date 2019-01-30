@@ -8,10 +8,10 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { ILesson } from 'app/shared/model/lesson.model';
 import { LessonService } from './lesson.service';
-import { ITeacher } from 'app/shared/model/teacher.model';
-import { TeacherService } from 'app/entities/teacher';
 import { IStudent } from 'app/shared/model/student.model';
 import { StudentService } from 'app/entities/student';
+import { ICourse } from 'app/shared/model/course.model';
+import { CourseService } from 'app/entities/course';
 
 @Component({
     selector: 'jhi-lesson-update',
@@ -21,16 +21,16 @@ export class LessonUpdateComponent implements OnInit {
     lesson: ILesson;
     isSaving: boolean;
 
-    teachers: ITeacher[];
-
     students: IStudent[];
+
+    courses: ICourse[];
     date: string;
 
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected lessonService: LessonService,
-        protected teacherService: TeacherService,
         protected studentService: StudentService,
+        protected courseService: CourseService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -40,15 +40,15 @@ export class LessonUpdateComponent implements OnInit {
             this.lesson = lesson;
             this.date = this.lesson.date != null ? this.lesson.date.format(DATE_TIME_FORMAT) : null;
         });
-        this.teacherService.query().subscribe(
-            (res: HttpResponse<ITeacher[]>) => {
-                this.teachers = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
         this.studentService.query().subscribe(
             (res: HttpResponse<IStudent[]>) => {
                 this.students = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.courseService.query().subscribe(
+            (res: HttpResponse<ICourse[]>) => {
+                this.courses = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -85,11 +85,11 @@ export class LessonUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    trackTeacherById(index: number, item: ITeacher) {
+    trackStudentById(index: number, item: IStudent) {
         return item.id;
     }
 
-    trackStudentById(index: number, item: IStudent) {
+    trackCourseById(index: number, item: ICourse) {
         return item.id;
     }
 

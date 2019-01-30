@@ -9,7 +9,29 @@
             ]
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "teacher",
+            "otherEntityName": "teacher",
+            "otherEntityRelationshipName": "course",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "lesson",
+            "otherEntityName": "lesson",
+            "otherEntityRelationshipName": "course"
+        },
+        {
+            "relationshipName": "student",
+            "otherEntityName": "student",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "course"
+        }
+    ],
     "changelogDate": "20190102190638",
     "entityTableName": "course",
     "dto": "no",

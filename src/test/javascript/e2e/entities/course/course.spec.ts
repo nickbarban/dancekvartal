@@ -38,7 +38,11 @@ describe('Course e2e test', () => {
         const nbButtonsBeforeCreate = await courseComponentsPage.countDeleteButtons();
 
         await courseComponentsPage.clickOnCreateButton();
-        await promise.all([courseUpdatePage.setNameInput('name')]);
+        await promise.all([
+            courseUpdatePage.setNameInput('name'),
+            courseUpdatePage.teacherSelectLastOption()
+            // courseUpdatePage.studentSelectLastOption(),
+        ]);
         expect(await courseUpdatePage.getNameInput()).to.eq('name');
         await courseUpdatePage.save();
         expect(await courseUpdatePage.getSaveButton().isPresent()).to.be.false;

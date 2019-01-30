@@ -28,7 +28,7 @@
                 <td>{{payment.sum}}</td>
                 <td>
                     <div *ngIf="payment.student">
-                        <a [routerLink]="['../student', payment.student?.id, 'view' ]" >{{payment.student?.id}}</a>
+                        <a [routerLink]="['../student', payment.student?.id, 'view' ]" >{{payment.student?.firstName}} {{payment.student?.lastName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -86,14 +86,20 @@ public class CourseResource {
      * GET  /courses : get all the courses.
      *
      * @param pageable the pagination information
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @return the ResponseEntity with status 200 (OK) and the list of courses in body
      */
     @GetMapping("/courses")
     @Timed
-    public ResponseEntity<List<Course>> getAllCourses(Pageable pageable) {
+    public ResponseEntity<List<Course>> getAllCourses(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Courses");
-        Page<Course> page = courseService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses");
+        Page<Course> page;
+        if (eagerload) {
+            page = courseService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = courseService.findAll(pageable);
+        }
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/courses?eagerload=%b", eagerload));
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 

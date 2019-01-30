@@ -28,8 +28,8 @@ export class LessonUpdatePage {
     cancelButton = element(by.id('cancel-save'));
     nameInput = element(by.id('field_name'));
     dateInput = element(by.id('field_date'));
-    teacherSelect = element(by.id('field_teacher'));
     studentSelect = element(by.id('field_student'));
+    courseSelect = element(by.id('field_course'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -51,25 +51,6 @@ export class LessonUpdatePage {
         return this.dateInput.getAttribute('value');
     }
 
-    async teacherSelectLastOption() {
-        await this.teacherSelect
-            .all(by.tagName('option'))
-            .last()
-            .click();
-    }
-
-    async teacherSelectOption(option) {
-        await this.teacherSelect.sendKeys(option);
-    }
-
-    getTeacherSelect(): ElementFinder {
-        return this.teacherSelect;
-    }
-
-    async getTeacherSelectedOption() {
-        return this.teacherSelect.element(by.css('option:checked')).getText();
-    }
-
     async studentSelectLastOption() {
         await this.studentSelect
             .all(by.tagName('option'))
@@ -87,6 +68,25 @@ export class LessonUpdatePage {
 
     async getStudentSelectedOption() {
         return this.studentSelect.element(by.css('option:checked')).getText();
+    }
+
+    async courseSelectLastOption() {
+        await this.courseSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async courseSelectOption(option) {
+        await this.courseSelect.sendKeys(option);
+    }
+
+    getCourseSelect(): ElementFinder {
+        return this.courseSelect;
+    }
+
+    async getCourseSelectedOption() {
+        return this.courseSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

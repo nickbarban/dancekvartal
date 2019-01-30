@@ -17,8 +17,9 @@
             },
             "name": "Name",
             "date": "Date",
-            "teacher": "Teacher",
-            "student": "Student"
+            "student": "Student",
+            "students": "Students",
+            "course": "Course"
         }
     }
 }

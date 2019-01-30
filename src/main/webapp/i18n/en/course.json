@@ -15,7 +15,12 @@
             "detail": {
                 "title": "Course"
             },
-            "name": "Name"
+            "name": "Name",
+            "teacher": "Teacher",
+            "lesson": "Lesson",
+            "lessons": "Lessons",
+            "student": "Student",
+            "students": "Students"
         }
     }
 }

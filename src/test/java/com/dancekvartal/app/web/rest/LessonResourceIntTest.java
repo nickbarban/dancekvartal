@@ -3,6 +3,7 @@ package com.dancekvartal.app.web.rest;
 import com.dancekvartal.app.DancekvartalApp;
 
 import com.dancekvartal.app.domain.Lesson;
+import com.dancekvartal.app.domain.Course;
 import com.dancekvartal.app.repository.LessonRepository;
 import com.dancekvartal.app.service.LessonService;
 import com.dancekvartal.app.web.rest.errors.ExceptionTranslator;
@@ -107,6 +108,11 @@ public class LessonResourceIntTest {
         Lesson lesson = new Lesson()
             .name(DEFAULT_NAME)
             .date(DEFAULT_DATE);
+        // Add required entity
+        Course course = CourseResourceIntTest.createEntity(em);
+        em.persist(course);
+        em.flush();
+        lesson.setCourse(course);
         return lesson;
     }
 

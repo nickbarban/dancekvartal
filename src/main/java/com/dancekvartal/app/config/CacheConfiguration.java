@@ -50,6 +50,8 @@ public class CacheConfiguration {
             cm.createCache(com.dancekvartal.app.domain.Lesson.class.getName() + ".teachers", jcacheConfiguration);
             cm.createCache(com.dancekvartal.app.domain.Lesson.class.getName() + ".students", jcacheConfiguration);
             cm.createCache(com.dancekvartal.app.domain.Student.class.getName() + ".lessons", jcacheConfiguration);
+            cm.createCache(com.dancekvartal.app.domain.Course.class.getName() + ".lessons", jcacheConfiguration);
+            cm.createCache(com.dancekvartal.app.domain.Course.class.getName() + ".students", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

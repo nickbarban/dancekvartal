@@ -53,7 +53,8 @@ export class CourseComponent implements OnInit, OnDestroy {
             .query({
                 page: this.page - 1,
                 size: this.itemsPerPage,
-                sort: this.sort()
+                sort: this.sort(),
+                eagerload: true
             })
             .subscribe(
                 (res: HttpResponse<ICourse[]>) => this.paginateCourses(res.body, res.headers),

@@ -17,7 +17,7 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="name"><span jhiTranslate="dancekvartalApp.lesson.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="date"><span jhiTranslate="dancekvartalApp.lesson.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="teacher.id"><span jhiTranslate="dancekvartalApp.lesson.teacher">Teacher</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="course.id"><span jhiTranslate="dancekvartalApp.lesson.course">Course</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -27,8 +27,8 @@
                 <td>{{lesson.name}}</td>
                 <td>{{lesson.date | date:'medium'}}</td>
                 <td>
-                    <div *ngIf="lesson.teacher">
-                        <a [routerLink]="['../teacher', lesson.teacher?.id, 'view' ]" >{{lesson.teacher?.id}}</a>
+                    <div *ngIf="lesson.course">
+                        <a [routerLink]="['../course', lesson.course?.id, 'view' ]" >{{lesson.course?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">
