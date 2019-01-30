@@ -1,0 +1,24 @@
+{
+    "dancekvartalApp": {
+        "course": {
+            "home": {
+                "title": "Courses",
+                "createLabel": "Створити новий Course",
+                "createOrEditLabel": "Створити чи редагувати Course"
+            },
+            "created": "Новий Course створений з ідентифікатором {{ param }}",
+            "updated": "Course оновлений з ідентифікатором {{ param }}",
+            "deleted": "Course видалений з ідентифікатором {{ param }}",
+            "delete": {
+                "question": "Ви впевнені, що хочете видалити Course {{ id }}?"
+            },
+            "detail": {
+                "title": "Course"
+            },
+            "name": "Name",
+            "teacher": "Teacher",
+            "lesson": "Lesson",
+            "student": "Student"
+        }
+    }
+}
