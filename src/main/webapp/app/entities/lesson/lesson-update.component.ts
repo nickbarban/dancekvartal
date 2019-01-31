@@ -25,6 +25,7 @@ export class LessonUpdateComponent implements OnInit {
 
     courses: ICourse[];
     date: string;
+    history: History;
 
     constructor(
         protected jhiAlertService: JhiAlertService,
@@ -35,6 +36,7 @@ export class LessonUpdateComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.history = window.history.state;
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ lesson }) => {
             this.lesson = lesson;
@@ -61,6 +63,7 @@ export class LessonUpdateComponent implements OnInit {
     save() {
         this.isSaving = true;
         this.lesson.date = this.date != null ? moment(this.date, DATE_TIME_FORMAT) : null;
+        this.lesson.name = this.lesson.date.format('YYYY-MM-DD');
         if (this.lesson.id !== undefined) {
             this.subscribeToSaveResponse(this.lessonService.update(this.lesson));
         } else {

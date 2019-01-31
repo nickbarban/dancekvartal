@@ -11,18 +11,18 @@
                 </dd>
                 <dt><span jhiTranslate="dancekvartalApp.lesson.date">Date</span></dt>
                 <dd>
-                    <span>{{lesson.date}}</span>
+                    <span>{{lesson.date.format('YYYY-MM-DD HH-mm')}}</span>
                 </dd>
                 <dt><span jhiTranslate="dancekvartalApp.lesson.student">Student</span></dt>
                 <dd>
-                    <span *ngFor="let student of lesson.students; let last = last">
-                        <a [routerLink]="['/student', student?.id, 'view' ]">{{student.id}}</a>{{last ? '' : ', '}}
-                    </span>
+                    <li *ngFor="let student of lesson.students; let last = last">
+                        <a [routerLink]="['/student', student?.id, 'view' ]">{{student.firstName}} {{student.lastName}}</a>
+                    </li>
                 </dd>
                 <dt><span jhiTranslate="dancekvartalApp.lesson.course">Course</span></dt>
                 <dd>
                     <div *ngIf="lesson.course">
-                        <a [routerLink]="['/course', lesson.course?.id, 'view']">{{lesson.course?.id}}</a>
+                        <a [routerLink]="['/course', lesson.course?.id, 'view']">{{lesson.course?.name.toUpperCase()}}</a>
                     </div>
                 </dd>
             </dl>
