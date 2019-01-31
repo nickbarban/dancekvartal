@@ -35,81 +35,15 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label jhiTranslate="dancekvartalApp.course.student" for="field_student">Student</label>
-                        <select class="form-control" id="field_student" multiple name="student"
+                        <label jhiTranslate="dancekvartalApp.course.students" for="field_student">Students</label>
+                        <select class="form-control" id="field_student" multiple name="student" size="{{students.length}}"
                                 [(ngModel)]="course.students">
                             <option [ngValue]="getSelected(course.students, studentOption)"
                                     *ngFor="let studentOption of students; trackBy: trackStudentById">{{studentOption.firstName}} {{studentOption.lastName}}</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-9">
-                    <div [hidden]="course.lessons.length === 0">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-                                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
-                                    <fa-icon [icon]="'sort'"></fa-icon>
-                                </th>
-                                <th jhiSortBy="date"><span jhiTranslate="dancekvartalApp.lesson.date">Date</span>
-                                    <fa-icon [icon]="'sort'"></fa-icon>
-                                </th>
-                                <th jhiSortBy="teacher.id"><span
-                                    jhiTranslate="dancekvartalApp.lesson.students">Students</span>
-                                    <fa-icon [icon]="'sort'"></fa-icon>
-                                </th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let lesson of course.lessons ;trackBy: trackId">
-                                <td><a [routerLink]="['/lesson', lesson.id, 'view' ]">{{lesson.id}}</a></td>
-                                <td>{{lesson.date | date:'medium'}}</td>
-                                <td>
-                                    <div *ngIf="lesson.students">
-                                        <!--<a [routerLink]="['../teacher', lesson.teacher?.id, 'view' ]" >{{lesson.teacher?.id}}</a>-->
-                                        {{lesson.students?.length}}
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group flex-btn-group-container">
-                                        <a
-                                                [routerLink]="['../../../lesson', lesson.id, 'view' ]"
-                                                class="btn btn-info btn-sm">
-                                            <fa-icon [icon]="'eye'"></fa-icon>
-                                            <span class="d-none d-md-inline"
-                                                  jhiTranslate="entity.action.view">View</span>
-                                        </a>
-                                        <a
-                                                [routerLink]="['/lesson', lesson.id, 'edit']"
-                                                class="btn btn-primary btn-sm">
-                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                                            <span class="d-none d-md-inline"
-                                                  jhiTranslate="entity.action.edit">Edit</span>
-                                        </a>
-                                        <a
-                                                [routerLink]="['/', { outlets: { popup: 'lesson/'+ lesson.id + '/delete'} }]"
-                                                replaceUrl="true"
-                                                queryParamsHandling="merge"
-                                                class="btn btn-danger btn-sm">
-                                            <fa-icon [icon]="'times'"></fa-icon>
-                                            <span class="d-none d-md-inline"
-                                                  jhiTranslate="entity.action.delete">Delete</span>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-lesson"
-                                [routerLink]="['/lesson/new']">
-                            <fa-icon [icon]="'plus'"></fa-icon>
-                            <span jhiTranslate="dancekvartalApp.lesson.home.createLabel">Create new Lesson</span>
-                        </button>
-                    </div>
-                </div>
+
             </div>
 
             <div class="row">

@@ -1,27 +1,101 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="course">
-            <h2><span jhiTranslate="dancekvartalApp.course.detail.title">Course</span> {{course.id}}</h2>
+            <h2><span jhiTranslate="dancekvartalApp.course.detail.title">Course:</span> '{{course.name.toUpperCase()}}'
+            </h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="dancekvartalApp.course.name">Name</span></dt>
-                <dd>
-                    <span>{{course.name}}</span>
-                </dd>
-                <dt><span jhiTranslate="dancekvartalApp.course.teacher">Teacher</span></dt>
-                <dd>
-                    <div *ngIf="course.teacher">
-                        <a [routerLink]="['/teacher', course.teacher?.id, 'view']">{{course.teacher?.id}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="dancekvartalApp.course.student">Student</span></dt>
-                <dd>
+            <div class="row">
+                <dl class="col-3 jh-entity-details">
+                    <!--<dt><span jhiTranslate="dancekvartalApp.course.name">Name</span></dt>-->
+                    <!--<dd>
+                        <span>{{course.name}}</span>
+                    </dd>-->
+                    <dt><span jhiTranslate="dancekvartalApp.course.teacher">Teacher</span></dt>
+                    <dd>
+                        <div *ngIf="course.teacher">
+                            <a [routerLink]="['/teacher', course.teacher?.id, 'view']">{{course.teacher?.firstName}} {{course.teacher?.lastName}}</a>
+                        </div>
+                    </dd>
+                    <br>
+                    <dt><span jhiTranslate="dancekvartalApp.course.students">Students</span></dt>
+                    <dd>
                     <span *ngFor="let student of course.students; let last = last">
-                        <a [routerLink]="['/student', student?.id, 'view' ]">{{student.id}}</a>{{last ? '' : ', '}}
+                        <li>
+                            <a [routerLink]="['/student', student?.id, 'view' ]">{{student.firstName}} {{student.lastName}}</a>
+                        </li>
                     </span>
-                </dd>
-            </dl>
+                    </dd>
+                </dl>
+
+                <div class="col-9">
+                    <div [hidden]="course.lessons.length === 0">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                                    <fa-icon [icon]="'sort'"></fa-icon>
+                                </th>
+                                <th jhiSortBy="date"><span jhiTranslate="dancekvartalApp.lesson.date">Date</span>
+                                    <fa-icon [icon]="'sort'"></fa-icon>
+                                </th>
+                                <th jhiSortBy="teacher.id"><span
+                                    jhiTranslate="dancekvartalApp.lesson.students">Students</span>
+                                    <fa-icon [icon]="'sort'"></fa-icon>
+                                </th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let lesson of course.lessons ;trackBy: trackId">
+                                <td><a [routerLink]="['/lesson', lesson.id, 'view' ]">{{lesson.id}}</a></td>
+                                <td>{{lesson.date | date:'medium'}}</td>
+                                <td>
+                                    <div *ngIf="lesson.students">
+                                        <!--<a [routerLink]="['../teacher', lesson.teacher?.id, 'view' ]" >{{lesson.teacher?.id}}</a>-->
+                                        {{lesson.students?.length}}
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">
+                                        <a
+                                            [routerLink]="['../../../lesson', lesson.id, 'view' ]"
+                                            class="btn btn-info btn-sm">
+                                            <fa-icon [icon]="'eye'"></fa-icon>
+                                            <span class="d-none d-md-inline"
+                                                  jhiTranslate="entity.action.view">View</span>
+                                        </a>
+                                        <a
+                                            [routerLink]="['/lesson', lesson.id, 'edit']"
+                                            class="btn btn-primary btn-sm">
+                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                            <span class="d-none d-md-inline"
+                                                  jhiTranslate="entity.action.edit">Edit</span>
+                                        </a>
+                                        <a
+                                            [routerLink]="['/', { outlets: { popup: 'lesson/'+ lesson.id + '/delete'} }]"
+                                            replaceUrl="true"
+                                            queryParamsHandling="merge"
+                                            class="btn btn-danger btn-sm">
+                                            <fa-icon [icon]="'times'"></fa-icon>
+                                            <span class="d-none d-md-inline"
+                                                  jhiTranslate="entity.action.delete">Delete</span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-lesson"
+                                [routerLink]="['/lesson/new']">
+                            <fa-icon [icon]="'plus'"></fa-icon>
+                            <span jhiTranslate="dancekvartalApp.lesson.home.createLabel">Create new Lesson</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             <button type="submit"
                     (click)="previousState()"
