@@ -10,8 +10,6 @@ import { ITeacher } from 'app/shared/model/teacher.model';
 import { TeacherService } from 'app/entities/teacher';
 import { IStudent } from 'app/shared/model/student.model';
 import { StudentService } from 'app/entities/student';
-import { ILesson } from 'app/shared/model/lesson.model';
-import { LessonService } from 'app/entities/lesson';
 
 @Component({
     selector: 'jhi-course-update',
@@ -24,15 +22,12 @@ export class CourseUpdateComponent implements OnInit {
     teachers: ITeacher[];
 
     students: IStudent[];
-    predicate: any;
-    reverse: any;
 
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected courseService: CourseService,
         protected teacherService: TeacherService,
         protected studentService: StudentService,
-        protected lessonService: LessonService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -53,27 +48,6 @@ export class CourseUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.lessonService.query().subscribe(
-            (res: HttpResponse<ILesson[]>) => {
-                /*console.log('Response length' + res.body.length);
-                res.body.forEach(item => {
-                    console.log('Course-Update.Component: lesson.id=' + item.id);
-                    console.log('Course-Update.Component: lesson.course.id=' + item.course.id);
-                    console.log('Course-Update.Component: lesson.students.length=' + item.students.length);
-                });*/
-
-                return (this.course.lessons = res.body.filter(value => value.course.id === this.course.id));
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-    }
-
-    reset() {
-        this.course.lessons = [];
-    }
-
-    trackId(index: number, item: ILesson) {
-        return item.id;
     }
 
     previousState() {
